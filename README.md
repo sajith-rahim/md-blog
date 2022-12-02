@@ -15,3 +15,48 @@
 
 
 ## Getting Started
+
+
+### Configuration
+
+```json   
+{   
+    "title":"Knowledge Base",
+    "version": "1.3",
+    "owner": "sajith.rahim",
+    "year": "2022",
+    // text to show ticker
+    "ticker_text": "Knowledge Base v1.3",
+    "show_post_count_in_ticker": "true",
+    /*
+    * array of names of top posts.
+    */
+    "top_posts":[
+        "The Shawshank Redemption",
+        "The Godfather",
+        "The Lord of the Rings: The Return of the King"
+    ],
+    /*
+    * metadata array of posts.
+    */
+    "posts": [
+        {
+            "title": "The Shawshank Redemption",
+            // can contain html tags like h2, span etc for hightligthing
+            "html_description": "<h2><span>Andy Dufresne</span> - who crawled through a river of s*** and came out clean on the other side.</h2>",
+            "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+            // define type
+            "type": "Project",
+            "author": "Stephen King",
+            // URI of md file
+            "markdown_uri": "https://xyz.com/content/post-1.md",
+            // rendered as txt, format not important.
+            "date": "11-Jul-2022",
+            "read_time": 26,
+            // URI for custom poster image (will use default image if not provided.)
+            "poster_uri": "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+        },
+       ...
+    ]
+}
+```
