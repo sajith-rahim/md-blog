@@ -1,0 +1,21 @@
+{
+  "name": "md-blog",
+  "version": "1.0.0",
+  "description": "render your markdown files as SPA blog",
+  "scripts": {
+    "build": "parcel build index.html  --no-source-maps",
+    "test": "echo 'Not Implemented'"
+  },
+  "keywords": [
+    "blog",
+    "markdown",
+    "md",
+    "showdownjs",
+    "alpinejs"
+  ],
+  "author": "sajith.rahim",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^2.8.0"
+  }
+}
