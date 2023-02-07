@@ -160,7 +160,7 @@ body {
 }
 
 .blog-big__title {
-  font-size: 132px;
+  font-size: 5em;
   font-family: "Space Grotesk", sans-serif;
   font-weight: 700;
   letter-spacing: -5px;
@@ -219,6 +219,10 @@ body {
   min-height: 90vh;
   padding: 1em 0px;
   
+}
+
+.left-bar-title{
+  font-size: 2em;
 }
 
 .blog-is-sticky{
@@ -1297,3 +1301,10 @@ div.four-not-four #g6219 {
 }
 /**/
 
+.ft-sz-3em {
+  font-size: 3em;
+}
+
+.ft-sz-5em{
+  font-size: 5em;
+}
