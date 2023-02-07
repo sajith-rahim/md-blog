@@ -307,8 +307,8 @@
 
             <div class="blog-part top-blog">
                 <div class="blog-right-title-container">
-                    <div class="blog-right-title">
-                        <svg class="top-site__logo" @click="logout()" xmlns="http://www.w3.org/2000/svg"
+                    <div class="blog-right-title" @click="logout()">
+                        <svg class="top-site__logo" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink" data-name="Layer 1" width="220" height="100"
                             viewBox="0 0 722.45196 364.19648">
                             <path
@@ -433,8 +433,10 @@
                                 d="M353.80412,390.84555a.6654.6654,0,0,0-1.17233-.4774,91.7099,91.7099,0,0,0-11.7377,19.45143c-4.88328,10.84668-9.80428,27.52154-5.51262,45.36366a.66533.66533,0,1,0,1.29376-.31117c-4.20339-17.47655.6343-33.84872,5.43247-44.5061A90.20231,90.20231,0,0,1,353.64918,391.226.66277.66277,0,0,0,353.80412,390.84555Z"
                                 transform="translate(-238.77402 -267.90176)" fill="#3f3d56" />
                         </svg>
+                        <div>
+                            <span class="top-site_title left-bar-title" x-html="metadata.title"></span>
+                        </div>
                         
-                        <span class="top-site_title" x-html="metadata.title"></span>
                     </div>
                     <div>
                         <!--svg width="6vw" height="6vw" :fill="metadata.styles.title_all_svg_color" :stroke="metadata.styles.title_all_svg_color" stroke-width=".7" stroke-linecap="round" stroke-linejoin="round"
@@ -465,7 +467,7 @@
             </div>
             <div class="blog-header blog-is-sticky">
                 <div class="blog-article header-article">
-                    <div class="blog-big__title-sticky" x-html="state.currentProject.type">Project</div>
+                    <div class="blog-big__title-sticky ft-sz-5em" x-html="state.currentProject.type">Project</div>
                     <div class="blog-menu rounded small-title">
                         <template x-for="(tag, index) in state.currentProject.tags">
                             <div class="chip no-click" >
@@ -484,8 +486,13 @@
                     <div>
                         <template x-for="(tag, index) in data.tags">
                             <div class="chip" @click="invokeFilterBy(tag)" :class="state.currentFilter.includes(tag) ? 'tag-active' : 'tag-inactive'">
-                                <svg x-show="!state.currentFilter.includes(tag)" viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M6 10a4 4 0 100-8 4 4 0 000 8zm0 2A6 6 0 106 0a6 6 0 000 12z" fill="currentColor"></path> </g></svg>
-                                <svg x-show="state.currentFilter.includes(tag)" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12,1A11,11,0,1,0,23,12,11.013,11.013,0,0,0,12,1Zm0,20a9,9,0,1,1,9-9A9.011,9.011,0,0,1,12,21ZM17.737,8.824a1,1,0,0,1-.061,1.413l-6,5.5a1,1,0,0,1-1.383-.03l-3-3a1,1,0,0,1,1.415-1.414l2.323,2.323,5.294-4.853A1,1,0,0,1,17.737,8.824Z"></path></g></svg>
+                                <span x-show="!state.currentFilter.includes(tag)">
+                                    <svg  viewBox="0 0 12 12" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M6 10a4 4 0 100-8 4 4 0 000 8zm0 2A6 6 0 106 0a6 6 0 000 12z" fill="currentColor"></path> </g></svg>
+                                </span>
+                                <span x-show="state.currentFilter.includes(tag)">
+                                    <svg  fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M12,1A11,11,0,1,0,23,12,11.013,11.013,0,0,0,12,1Zm0,20a9,9,0,1,1,9-9A9.011,9.011,0,0,1,12,21ZM17.737,8.824a1,1,0,0,1-.061,1.413l-6,5.5a1,1,0,0,1-1.383-.03l-3-3a1,1,0,0,1,1.415-1.414l2.323,2.323,5.294-4.853A1,1,0,0,1,17.737,8.824Z"></path></g></svg>
+                                </span>
+                                
                                 <span x-text="tag"></span>
                             </div>
                         </template>
@@ -497,7 +504,7 @@
                         </div>
                         <div style="display: flex; flex-direction: column;margin-top:5px">
   
-                            <span class="top-site_title" x-html="`${metadata.title}`">Knowledge Base</span>
+                            <span class="top-site_title ft-sz-3em" x-html="`${metadata.title}`">Knowledge Base</span>
                             <span class="version" x-html="`version: ${metadata.version}`">version: 1.3</span>
                             
                             <span class="stats-list-item ">Total number of records: <span class=""
@@ -527,7 +534,8 @@
                             </div>
                             <div class="blog-article">
                                 <img x-show="project.poster_uri" :src="project.poster_uri" alt="">
-                                <svg x-show="!project.poster_uri" xmlns="http://www.w3.org/2000/svg"
+                                <div x-show="!project.poster_uri">
+                                    <svg  xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" data-name="Layer 1" width="500"
                                     height="160" viewBox="0 0 1119.60911 699">
                                     <title>server down</title>
@@ -618,6 +626,8 @@
                                         d="M394,661.5c0,7.732-19.90861,23-42,23s-43-14.268-43-22,20.90861-6,43-6S394,653.768,394,661.5Z"
                                         transform="translate(-31.39089 -100.5)" fill="#fff" />
                                 </svg>
+                                </div>
+                                
                                 <span class="project-html_description" x-show="project.html_description"
                                     x-html="project.html_description">
 
