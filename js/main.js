@@ -308,7 +308,7 @@ function init() {
         getDirectLink(){
             try {
                 let title = $(this.$refs.marquee).text();
-                let text = window.location.origin + '/?search=' + encodeURI(title);
+                let text = window.location.origin + window.location.pathname + '/?search=' + encodeURI(title);
                 navigator.clipboard.writeText(text);
 
             } catch (error) {
