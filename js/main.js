@@ -144,6 +144,7 @@ function init() {
                 if (metadata.posts) {
                     
                     this.data.posts = this.doFilterByTag(metadata.posts);
+                    this.state.currentProject = this.data.posts[0];
                     this.state.focusedPostsLoaded = true;
                 }
 
@@ -220,6 +221,7 @@ function init() {
         },
 
         handlePostScrollIntoView(el, project) {
+            return
             let element = $(el);
             //console.log(element.offset(), $(element.children(".header-article")).first().children(".blog-big__title").first().text());
             this.state.currentProject = project;
@@ -323,6 +325,19 @@ function init() {
         setTheme(){
             this.state.darkMode = !this.state.darkMode;
             localStorage.setItem('md-blog-is-dark-mode', this.state.darkMode);
+        },
+
+        handleWheelScroll(e){
+
+            let n_projects = this.data.posts.length -1;
+            if(e.deltaY < 0){
+                this.state.currentProjectIndex = this.state.currentProjectIndex == 0 ? 0 : this.state.currentProjectIndex - 1;
+            }
+            else{
+                this.state.currentProjectIndex = this.state.currentProjectIndex == n_projects ? n_projects : this.state.currentProjectIndex + 1;
+            }
+
+            this.state.currentProject = this.data.posts[this.state.currentProjectIndex] || this.data.posts[0];
         },
 
 
