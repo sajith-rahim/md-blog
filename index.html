@@ -526,15 +526,15 @@
             </div>
             <div class="blog-header-container">
                 <div x-show="state.focusedPostsLoaded">
-                    <template x-for="(project, index) in data.posts">
-                        <div class="blog-header" x-intersect.half="handlePostScrollIntoView($el, project)">
+                    <!--template x-for="(project, index) in data.posts"-->
+                        <div class="blog-header" x-on:wheel="handleWheelScroll($event)">
                             <div class="blog-article header-article">
-                                <div class="blog-big__title hide-text-overflow" x-html="project.title"></div>
-                                <div class="blog-menu small-title date" x-html="project.date">01.01.9999</div>
+                                <div class="blog-big__title hide-text-overflow" x-html="state.currentProject.title"></div>
+                                <div class="blog-menu small-title date" x-html="state.currentProject.date">01.01.9999</div>
                             </div>
                             <div class="blog-article">
-                                <img x-show="project.poster_uri" :src="project.poster_uri" alt="">
-                                <div x-show="!project.poster_uri">
+                                <img x-show="state.currentProject.poster_uri" :src="state.currentProject.poster_uri" alt="">
+                                <div x-show="!state.currentProject.poster_uri">
                                     <svg  xmlns="http://www.w3.org/2000/svg"
                                     xmlns:xlink="http://www.w3.org/1999/xlink" data-name="Layer 1" width="500"
                                     height="160" viewBox="0 0 1119.60911 699">
@@ -628,16 +628,16 @@
                                 </svg>
                                 </div>
                                 
-                                <span class="project-html_description" x-show="project.html_description"
-                                    x-html="project.html_description">
+                                <span class="project-html_description" x-show="state.currentProject.html_description"
+                                    x-html="state.currentProject.html_description">
 
                                 </span>
                                 <div class="blog-detail">
-                                    <span x-html="project.author"></span>
-                                    <span><span x-html="project.read_time"></span> minutes read</span>
+                                    <span x-html="state.currentProject.author"></span>
+                                    <span><span x-html="state.currentProject.read_time"></span> minutes read</span>
                                 </div>
-                                <p class="blog-project-desc" x-html="project.description"></p>
-                                <a x-on:click="openBlogArticle($el, project)" href="#">
+                                <p class="blog-project-desc" x-html="state.currentProject.description"></p>
+                                <a x-on:click="openBlogArticle($el, state.currentProject)" href="#">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
                                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                         class="feather feather-corner-down-right" viewBox="0 0 24 24">
@@ -651,7 +651,7 @@
                     </template>
                 </div>
             </div>
-    </template>
+    <!--/template-->
     <template x-if="!auth.authenticated">
         <div class="auth">
             <div class="auth-container">
