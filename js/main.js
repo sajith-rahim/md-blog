@@ -22,6 +22,7 @@ function init() {
             focusedPostsLoaded: false,
             topPostsLoaded: false,
             currentProject: {},
+            currentProjectIndex: 0,
             isHomeView: true,
             scrollPercentage: 0,
             darkMode: false,
@@ -219,7 +220,6 @@ function init() {
         },
 
         handlePostScrollIntoView(el, project) {
-
             let element = $(el);
             //console.log(element.offset(), $(element.children(".header-article")).first().children(".blog-big__title").first().text());
             this.state.currentProject = project;
