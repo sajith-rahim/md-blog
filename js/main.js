@@ -2,9 +2,9 @@ function init() {
 
     let page = {
         metadata: {
-            title: "Knowledge Base",
+            title: "Weblog",
             version: "1.3",
-            index_uri: "https://raw.githubusercontent.com/sajith-rahim/cdn/main/content/blog/static/content/index.json",
+            index_uri: "./js/index.json",
             index_type: "json",
             index_raw: {},
             owner: "sajith.rahim",
@@ -15,7 +15,7 @@ function init() {
         data: {
             posts: [],
             top_posts: [],
-            tags: ["fiction","feel-good", "mafia"]
+            tags: ["fiction", "feel-good", "mafia"]
         },
         state: {
             indexLoaded: false,
@@ -35,15 +35,15 @@ function init() {
         auth: {
             doAuth: true, // no login-screen
             hash: 54149364,
-            authenticated: false ,
-            no_auth_pass:'91194' //'' // login-screen but autofill password
+            authenticated: false,
+            no_auth_pass: '91194' //'' // login-screen but autofill password
         },
         converters: {
             mdConverter: new showdown.Converter(),
-            synth : window.speechSynthesis
+            synth: window.speechSynthesis
         },
         geo: {
-            enabled: true,
+            enabled: false,
             ip: '',
             geoLocation: ''
         },
@@ -61,11 +61,11 @@ function init() {
 
 
             //$(this.$refs.marquee).html(`• Knowledge Base v1.3 •     |       Please authenticate to proceed.`);
-            
+
             this.auth.authenticated = localStorage.getItem('md-blog-auth-status') === 'true';
             this.state.darkMode = localStorage.getItem('md-blog-is-dark-mode') === 'true';
 
-            if(this.auth.doAuth && !this.auth.authenticated){
+            if (this.auth.doAuth && !this.auth.authenticated) {
                 this.$watch('auth.authenticated', (auth) => {
                     if (auth) {
                         localStorage.setItem('md-blog-auth-status', true);
@@ -73,7 +73,7 @@ function init() {
                     }
                 });
             }
-            else{
+            else {
                 this.auth.authenticated = true;
                 localStorage.setItem('md-blog-auth-status', true);
                 this.doInit();
@@ -83,7 +83,7 @@ function init() {
 
         },
         doInit() {
-            
+
             fetch(this.metadata.index_uri)
                 .then((response) => {
                     if (response.ok) {
@@ -142,7 +142,7 @@ function init() {
                     $(this.$refs.marquee).html(this.metadata.ticker_text);
                 }
                 if (metadata.posts) {
-                    
+
                     this.data.posts = this.doFilterByTag(metadata.posts);
                     this.state.currentProject = this.data.posts[0];
                     this.state.focusedPostsLoaded = true;
@@ -167,7 +167,7 @@ function init() {
                 let _postNames = _topPosts.map(p => p.title);
                 metadata.top_posts.forEach(el => {
                     let idx = _postNames.indexOf(el);
-                    if(idx > -1)
+                    if (idx > -1)
                         _topPostsOrdered.push(_topPosts[idx]);
                 });
                 if (_topPostsOrdered) {
@@ -176,7 +176,7 @@ function init() {
                     if (metadata.show_post_count_in_ticker)
                         $(this.$refs.marquee).html(`${this.metadata.ticker_text} | No of posts: ${this.data.posts.length}`);
                 }
-                if(window.location.search.length > 0){
+                if (window.location.search.length > 0) {
                     this.handleDirectURL()
                 }
             } catch (error) {
@@ -191,28 +191,28 @@ function init() {
             } catch (error) {
                 console.log("[📒.md-blog] Processing md with error : " + error);
             }
-            
+
         },
 
-        doFilterByTag(_posts){
+        doFilterByTag(_posts) {
             //this.state.currentFilter = ["feel-good"]
-            if(!this.state.currentFilter.length > 0){
+            if (!this.state.currentFilter.length > 0) {
                 return _posts;
             }
-            let filtered = _posts.filter((post)=>{
-                if(post.tags){
-                    return post.tags.some(p=> this.state.currentFilter.indexOf(p) >= 0)
+            let filtered = _posts.filter((post) => {
+                if (post.tags) {
+                    return post.tags.some(p => this.state.currentFilter.indexOf(p) >= 0)
                 }
             })
 
             return filtered;
         },
 
-        invokeFilterBy(tag){
+        invokeFilterBy(tag) {
             debugger;
-            if(!this.state.currentFilter.includes(tag)){
+            if (!this.state.currentFilter.includes(tag)) {
                 this.state.currentFilter.push(tag);
-                
+
             } else {
                 this.state.currentFilter = this.state.currentFilter.filter(t => t !== tag);
             }
@@ -227,31 +227,31 @@ function init() {
             this.state.currentProject = project;
         },
 
-        handleDirectURL(){
+        handleDirectURL() {
             try {
                 const regex = /(([\?]?search=)(.*))/;
-                let postName =  '';
+                let postName = '';
 
                 if ((grps = regex.exec(window.location.toString())) !== null) {
-                    postName = decodeURI(grps[grps.length-1] || '');
+                    postName = decodeURI(grps[grps.length - 1] || '');
                 }
-                
+
                 let post = this.data.posts
                     .filter(_post => {
                         return _post.title.includes(postName)
                     });
-                
 
-                if(post[0]){
+
+                if (post[0]) {
                     this.state.hasError = false;
-                    this.openBlogArticle('',{...post[0]}); //proxy -> object
-                }else{
+                    this.openBlogArticle('', { ...post[0] }); //proxy -> object
+                } else {
                     this.state.hasError = true;
                     this.toggleArticleView();
                 }
 
             } catch (error) {
-                
+
             }
         },
 
@@ -270,74 +270,103 @@ function init() {
 
         },
 
-        clearErrorState(){
+        clearErrorState() {
             this.state.hasError = false;
         },
 
         toggleArticleView() {
             try {
                 this.converters.synth.cancel();
-                this.state.isHomeView = !this.state.isHomeView; 
-            } catch (error) { 
+                this.state.isHomeView = !this.state.isHomeView;
+            } catch (error) {
             }
-            
+
         },
 
-        readContent(){
+        readContent() {
             try {
 
                 var _text = new SpeechSynthesisUtterance();
-                _text.text = this.$refs.article_content.innerText ;
+                _text.text = this.$refs.article_content.innerText;
                 this.converters.synth.speak(_text);
             } catch (error) {
                 console.log(error);
             }
         },
 
-        returnToHome(){
+        returnToHome() {
             try {
-                window.history.pushState("object or string", "Title", "/"+window.location.href.substring(window.location.href.lastIndexOf('/') + 1).split("?")[0]);
+                window.history.pushState("object or string", "Title", "/" + window.location.href.substring(window.location.href.lastIndexOf('/') + 1).split("?")[0]);
                 this.clearErrorState();
-                this.toggleArticleView();  
+                this.toggleArticleView();
             } catch (error) {
-                
+
             }
-            
+
         },
 
-        getDirectLink(){
+        getDirectLink() {
             try {
                 let title = $(this.$refs.marquee).text();
                 let text = window.location.origin + window.location.pathname + '/?search=' + encodeURI(title);
                 navigator.clipboard.writeText(text);
 
             } catch (error) {
-                
+
             }
 
         },
 
-        logout(){
+        logout() {
             localStorage.setItem('md-blog-auth-status', false);
             this.auth.authenticated = false;
         },
 
-        setTheme(){
+        setTheme() {
             this.state.darkMode = !this.state.darkMode;
             localStorage.setItem('md-blog-is-dark-mode', this.state.darkMode);
         },
 
-        handleWheelScroll(e){
+        handleWheelScroll(e) {
 
-            let n_projects = this.data.posts.length -1;
-            if(e.deltaY < 0){
+            let n_projects = this.data.posts.length - 1;
+            if (e.deltaY < 0) {
                 this.state.currentProjectIndex = this.state.currentProjectIndex == 0 ? 0 : this.state.currentProjectIndex - 1;
             }
-            else{
+            else {
                 this.state.currentProjectIndex = this.state.currentProjectIndex == n_projects ? n_projects : this.state.currentProjectIndex + 1;
             }
 
             this.state.currentProject = this.data.posts[this.state.currentProjectIndex] || this.data.posts[0];
+        },
+        handleURL(id){
+            console.log(id)
+        switch (id) {
+            case 'Github':
+                this.openInNewTab('http://github.com/sajith-rahim');
+                break;
+            case 'Location':
+                this.openInNewTab('https://goo.gl/maps/qW1eHxxyUeGjT8jN8')
+                break;
+            case 'Company':
+                this.openInNewTab('http://www.servicenow.com')
+                break;
+            case 'Portfolio':
+                this.openInNewTab('http://sajith-rahim.github.io')
+                break;
+            case 'Design':
+                this.openInNewTab('https://dribbble.com/shots/15656415-Blog-Self-Control')
+                break;
+        
+            default:
+                break;
+        }
+        },
+        redirectToURL(url) {
+            window.location.replace(url);
+        },
+        openInNewTab(url) {
+            window.open(url, '_blank').focus();
         },
 
 
