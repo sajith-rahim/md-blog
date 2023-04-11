@@ -198,7 +198,7 @@
                 </div>
                 <div class="scroll-amount" :style="{ width: `${state.scrollPercentage}%` }"></div>
                 <div x-show="!state.hasError" class="article-content-wrapper">
-                    <div  id="article_content-sidebar">
+                    <div id="article_content-sidebar">
                         <div class="sidebar-cred-logo-container">
                             <svg class="sidebar-cred__logo" version="1.0" id="sr-logo" viewBox="0 0 208 177">
                                 <g fill="currentColor">
@@ -209,7 +209,31 @@
                             </svg>
 
                         </div>
-                        
+                        <div class="arcticle-sidebar-options">
+                            <div class="share" x-on:click="getDirectLink();"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M15.1581 7.81489C15.883 8.5467 16.8886 9 18 9C20.2091 9 22 7.20914 22 5C22 2.79086 20.2091 1 18 1C15.7909 1 14 2.79086 14 5C14 5.37703 14.0522 5.74188 14.1497 6.08773L8.84197 9.18518C8.11707 8.45333 7.11147 8 6 8C3.79086 8 2 9.79086 2 12C2 14.2091 3.79086 16 6 16C7.11165 16 8.11739 15.5465 8.84231 14.8145L14.1509 17.9079C14.0526 18.255 14 18.6214 14 19C14 21.2091 15.7909 23 18 23C20.2091 23 22 21.2091 22 19C22 16.7909 20.2091 15 18 15C16.8902 15 15.8859 15.452 15.1613 16.1819L9.85049 13.0872C9.94789 12.7415 10 12.3768 10 12C10 11.623 9.94784 11.2582 9.85036 10.9124L15.1581 7.81489ZM18 3C16.8954 3 16 3.89543 16 5C16 5.3474 16.0886 5.67412 16.2444 5.95879C16.2545 5.97417 16.2643 5.98992 16.2737 6.00602C16.283 6.022 16.2918 6.03813 16.3002 6.05439C16.6531 6.62207 17.2824 7 18 7C19.1046 7 20 6.10457 20 5C20 3.89543 19.1046 3 18 3ZM7.69959 10.9453C7.708 10.9617 7.71691 10.978 7.72632 10.9941C7.73579 11.0103 7.74565 11.0262 7.75588 11.0417C7.91152 11.3262 8 11.6528 8 12C8 12.3474 7.9114 12.6742 7.75556 12.9589C7.74533 12.9744 7.73547 12.9903 7.726 13.0066C7.71682 13.0223 7.70812 13.0382 7.69989 13.0543C7.34703 13.622 6.71765 14 6 14C4.89543 14 4 13.1046 4 12C4 10.8954 4.89543 10 6 10C6.71745 10 7.34667 10.3778 7.69959 10.9453ZM16 19C16 18.6749 16.0776 18.368 16.2152 18.0966C16.2399 18.0641 16.2629 18.0297 16.284 17.9935C16.3042 17.9588 16.3221 17.9234 16.3378 17.8874C16.6967 17.3522 17.3072 17 18 17C19.1046 17 20 17.8954 20 19C20 20.1046 19.1046 21 18 21C16.8954 21 16 20.1046 16 19Z"
+                                            fill="currentColor">
+                                        </path>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="back" x-on:click="returnToHome(); ">
+                                <svg fill="currentColor" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"
+                                    stroke="currentColor">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path
+                                            d="M222.927 580.115l301.354 328.512c24.354 28.708 20.825 71.724-7.883 96.078s-71.724 20.825-96.078-7.883L19.576 559.963a67.846 67.846 0 01-13.784-20.022 68.03 68.03 0 01-5.977-29.488l.001-.063a68.343 68.343 0 017.265-29.134 68.28 68.28 0 011.384-2.6 67.59 67.59 0 0110.102-13.687L429.966 21.113c25.592-27.611 68.721-29.247 96.331-3.656s29.247 68.721 3.656 96.331L224.088 443.784h730.46c37.647 0 68.166 30.519 68.166 68.166s-30.519 68.166-68.166 68.166H222.927z">
+                                        </path>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
                     </div>
                     <div x-ref="article_content" id="article_content" class="article_content">
 
@@ -316,7 +340,7 @@
             <div class="blog-header blog-is-sticky">
                 <div class="blog-article header-article">
                     <div class="blog-big__title-sticky ft-sz-5em" x-html="state.currentProject.type">Project</div>
-                    <div class="blog-menu rounded small-title">
+                    <div class="blog-menu"> <!--rounded"-->
                         <template x-for="(tag, index) in state.currentProject.tags">
                             <div class="chip no-click">
                                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -369,36 +393,88 @@
                                 
                                 </span!-->
                             <div class="profile-info-wrapper">
-                                <span  @click="handleURL('Company')" class="stats-list-item flex-inline" :class="state.darkMode? 'dark':'sunny'"><svg
-                                    viewBox="0 0 24 24" class="span-list-svg" id="company-small-24px"
-                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                    <g id="SVGRepo_iconCarrier">
-                                        <path id="company-small-24px-2" data-name="company-small-24px"
-                                            d="M16,4H2A2.006,2.006,0,0,0,0,6V24H18V6A2.006,2.006,0,0,0,16,4ZM8,22V18h2v4Zm8,0H12V17a.945.945,0,0,0-1-1H7a.945.945,0,0,0-1,1v5H2V6H16ZM8,10H6V8H8Zm4,0H10V8h2ZM8,14H6V12H8Zm4,0H10V12h2Z"
-                                            transform="translate(3 -2)"></path>
-                                        <rect id="Retângulo_222" data-name="Retângulo 222" fill="none" opacity="0">
-                                        </rect>
-                                    </g>
-                                </svg> <span x-html="'ServiceNow'"></span>
-                            </span>
-                            <span @click="handleURL('Portfolio')" class="stats-list-item flex-inline" :class="state.darkMode? 'dark':'sunny'">
-                                <svg  class="span-list-svg" fill="currentColor" viewBox="0 0 512 512" id="_x30_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M256,0C114.615,0,0,114.615,0,256s114.615,256,256,256s256-114.615,256-256S397.385,0,256,0z M418.275,146h-46.667 c-5.365-22.513-12.324-43.213-20.587-61.514c15.786,8.776,30.449,19.797,43.572,32.921C403.463,126.277,411.367,135.854,418.275,146 z M452,256c0,17.108-2.191,33.877-6.414,50h-64.034c1.601-16.172,2.448-32.887,2.448-50s-0.847-33.828-2.448-50h64.034 C449.809,222.123,452,238.892,452,256z M256,452c-5.2,0-21.048-10.221-36.844-41.813c-6.543-13.087-12.158-27.994-16.752-44.187 h107.191c-4.594,16.192-10.208,31.1-16.752,44.187C277.048,441.779,261.2,452,256,452z M190.813,306 c-1.847-16.247-2.813-33.029-2.813-50s0.966-33.753,2.813-50h130.374c1.847,16.247,2.813,33.029,2.813,50s-0.966,33.753-2.813,50 H190.813z M60,256c0-17.108,2.191-33.877,6.414-50h64.034c-1.601,16.172-2.448,32.887-2.448,50s0.847,33.828,2.448,50H66.414 C62.191,289.877,60,273.108,60,256z M256,60c5.2,0,21.048,10.221,36.844,41.813c6.543,13.087,12.158,27.994,16.752,44.187H202.404 c4.594-16.192,10.208-31.1,16.752-44.187C234.952,70.221,250.8,60,256,60z M160.979,84.486c-8.264,18.301-15.222,39-20.587,61.514 H93.725c6.909-10.146,14.812-19.723,23.682-28.593C130.531,104.283,145.193,93.262,160.979,84.486z M93.725,366h46.667 c5.365,22.513,12.324,43.213,20.587,61.514c-15.786-8.776-30.449-19.797-43.572-32.921C108.537,385.723,100.633,376.146,93.725,366z M351.021,427.514c8.264-18.301,15.222-39,20.587-61.514h46.667c-6.909,10.146-14.812,19.723-23.682,28.593 C381.469,407.717,366.807,418.738,351.021,427.514z"></path></g></svg>
-                                 <span  x-html="'Portfolio'"></span>
-                            </span>
-                            <span @click="handleURL('Location')" class="stats-list-item flex-inline" :class="state.darkMode? 'dark':'sunny'">
-                                <svg  class="span-list-svg" fill="currentColor" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16.114-0.011c-6.559 0-12.114 5.587-12.114 12.204 0 6.93 6.439 14.017 10.77 18.998 0.017 0.020 0.717 0.797 1.579 0.797h0.076c0.863 0 1.558-0.777 1.575-0.797 4.064-4.672 10-12.377 10-18.998 0-6.618-4.333-12.204-11.886-12.204zM16.515 29.849c-0.035 0.035-0.086 0.074-0.131 0.107-0.046-0.032-0.096-0.072-0.133-0.107l-0.523-0.602c-4.106-4.71-9.729-11.161-9.729-17.055 0-5.532 4.632-10.205 10.114-10.205 6.829 0 9.886 5.125 9.886 10.205 0 4.474-3.192 10.416-9.485 17.657zM16.035 6.044c-3.313 0-6 2.686-6 6s2.687 6 6 6 6-2.687 6-6-2.686-6-6-6zM16.035 16.044c-2.206 0-4.046-1.838-4.046-4.044s1.794-4 4-4c2.207 0 4 1.794 4 4 0.001 2.206-1.747 4.044-3.954 4.044z"></path> </g></svg>
-                                <span  x-html="'BLR'"></span>
-                            </span>
-                            <span @click="handleURL('Github')" class="stats-list-item flex-inline" :class="state.darkMode? 'dark':'sunny'">
-                                <svg  class="span-list-svg" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>github [#142]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-140.000000, -7559.000000)" fill="currentColor"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M94,7399 C99.523,7399 104,7403.59 104,7409.253 C104,7413.782 101.138,7417.624 97.167,7418.981 C96.66,7419.082 96.48,7418.762 96.48,7418.489 C96.48,7418.151 96.492,7417.047 96.492,7415.675 C96.492,7414.719 96.172,7414.095 95.813,7413.777 C98.04,7413.523 100.38,7412.656 100.38,7408.718 C100.38,7407.598 99.992,7406.684 99.35,7405.966 C99.454,7405.707 99.797,7404.664 99.252,7403.252 C99.252,7403.252 98.414,7402.977 96.505,7404.303 C95.706,7404.076 94.85,7403.962 94,7403.958 C93.15,7403.962 92.295,7404.076 91.497,7404.303 C89.586,7402.977 88.746,7403.252 88.746,7403.252 C88.203,7404.664 88.546,7405.707 88.649,7405.966 C88.01,7406.684 87.619,7407.598 87.619,7408.718 C87.619,7412.646 89.954,7413.526 92.175,7413.785 C91.889,7414.041 91.63,7414.493 91.54,7415.156 C90.97,7415.418 89.522,7415.871 88.63,7414.304 C88.63,7414.304 88.101,7413.319 87.097,7413.247 C87.097,7413.247 86.122,7413.234 87.029,7413.87 C87.029,7413.87 87.684,7414.185 88.139,7415.37 C88.139,7415.37 88.726,7417.2 91.508,7416.58 C91.513,7417.437 91.522,7418.245 91.522,7418.489 C91.522,7418.76 91.338,7419.077 90.839,7418.982 C86.865,7417.627 84,7413.783 84,7409.253 C84,7403.59 88.478,7399 94,7399" id="github-[#142]"> </path> </g> </g> </g> </g></svg>
-                                <span x-html="'Github'"></span>
-                            </span>
+                                <span @click="handleURL('Company')" class="stats-list-item flex-inline"
+                                    :class="state.darkMode? 'dark':'sunny'"><svg viewBox="0 0 24 24"
+                                        class="span-list-svg" id="company-small-24px" xmlns="http://www.w3.org/2000/svg"
+                                        fill="currentColor">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path id="company-small-24px-2" data-name="company-small-24px"
+                                                d="M16,4H2A2.006,2.006,0,0,0,0,6V24H18V6A2.006,2.006,0,0,0,16,4ZM8,22V18h2v4Zm8,0H12V17a.945.945,0,0,0-1-1H7a.945.945,0,0,0-1,1v5H2V6H16ZM8,10H6V8H8Zm4,0H10V8h2ZM8,14H6V12H8Zm4,0H10V12h2Z"
+                                                transform="translate(3 -2)"></path>
+                                            <rect id="Retângulo_222" data-name="Retângulo 222" fill="none" opacity="0">
+                                            </rect>
+                                        </g>
+                                    </svg> <span x-html="'ServiceNow'"></span>
+                                </span>
+                                <span @click="handleURL('Portfolio')" class="stats-list-item flex-inline"
+                                    :class="state.darkMode? 'dark':'sunny'">
+                                    <svg class="span-list-svg" fill="currentColor" viewBox="0 0 512 512" id="_x30_1"
+                                        version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path
+                                                d="M256,0C114.615,0,0,114.615,0,256s114.615,256,256,256s256-114.615,256-256S397.385,0,256,0z M418.275,146h-46.667 c-5.365-22.513-12.324-43.213-20.587-61.514c15.786,8.776,30.449,19.797,43.572,32.921C403.463,126.277,411.367,135.854,418.275,146 z M452,256c0,17.108-2.191,33.877-6.414,50h-64.034c1.601-16.172,2.448-32.887,2.448-50s-0.847-33.828-2.448-50h64.034 C449.809,222.123,452,238.892,452,256z M256,452c-5.2,0-21.048-10.221-36.844-41.813c-6.543-13.087-12.158-27.994-16.752-44.187 h107.191c-4.594,16.192-10.208,31.1-16.752,44.187C277.048,441.779,261.2,452,256,452z M190.813,306 c-1.847-16.247-2.813-33.029-2.813-50s0.966-33.753,2.813-50h130.374c1.847,16.247,2.813,33.029,2.813,50s-0.966,33.753-2.813,50 H190.813z M60,256c0-17.108,2.191-33.877,6.414-50h64.034c-1.601,16.172-2.448,32.887-2.448,50s0.847,33.828,2.448,50H66.414 C62.191,289.877,60,273.108,60,256z M256,60c5.2,0,21.048,10.221,36.844,41.813c6.543,13.087,12.158,27.994,16.752,44.187H202.404 c4.594-16.192,10.208-31.1,16.752-44.187C234.952,70.221,250.8,60,256,60z M160.979,84.486c-8.264,18.301-15.222,39-20.587,61.514 H93.725c6.909-10.146,14.812-19.723,23.682-28.593C130.531,104.283,145.193,93.262,160.979,84.486z M93.725,366h46.667 c5.365,22.513,12.324,43.213,20.587,61.514c-15.786-8.776-30.449-19.797-43.572-32.921C108.537,385.723,100.633,376.146,93.725,366z M351.021,427.514c8.264-18.301,15.222-39,20.587-61.514h46.667c-6.909,10.146-14.812,19.723-23.682,28.593 C381.469,407.717,366.807,418.738,351.021,427.514z">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                    <span x-html="'Portfolio'"></span>
+                                </span>
+                                <span @click="handleURL('Location')" class="stats-list-item flex-inline"
+                                    :class="state.darkMode? 'dark':'sunny'">
+                                    <svg class="span-list-svg" fill="currentColor" viewBox="0 0 32 32" version="1.1"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path
+                                                d="M16.114-0.011c-6.559 0-12.114 5.587-12.114 12.204 0 6.93 6.439 14.017 10.77 18.998 0.017 0.020 0.717 0.797 1.579 0.797h0.076c0.863 0 1.558-0.777 1.575-0.797 4.064-4.672 10-12.377 10-18.998 0-6.618-4.333-12.204-11.886-12.204zM16.515 29.849c-0.035 0.035-0.086 0.074-0.131 0.107-0.046-0.032-0.096-0.072-0.133-0.107l-0.523-0.602c-4.106-4.71-9.729-11.161-9.729-17.055 0-5.532 4.632-10.205 10.114-10.205 6.829 0 9.886 5.125 9.886 10.205 0 4.474-3.192 10.416-9.485 17.657zM16.035 6.044c-3.313 0-6 2.686-6 6s2.687 6 6 6 6-2.687 6-6-2.686-6-6-6zM16.035 16.044c-2.206 0-4.046-1.838-4.046-4.044s1.794-4 4-4c2.207 0 4 1.794 4 4 0.001 2.206-1.747 4.044-3.954 4.044z">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                    <span x-html="'BLR'"></span>
+                                </span>
+                                <span @click="handleURL('Github')" class="stats-list-item flex-inline"
+                                    :class="state.darkMode? 'dark':'sunny'">
+                                    <svg class="span-list-svg" viewBox="0 0 20 20" version="1.1"
+                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        fill="#000000">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
+                                        </g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <title>github [#142]</title>
+                                            <desc>Created with Sketch.</desc>
+                                            <defs> </defs>
+                                            <g id="Page-1" stroke="none" stroke-width="1" fill="none"
+                                                fill-rule="evenodd">
+                                                <g id="Dribbble-Light-Preview"
+                                                    transform="translate(-140.000000, -7559.000000)"
+                                                    fill="currentColor">
+                                                    <g id="icons" transform="translate(56.000000, 160.000000)">
+                                                        <path
+                                                            d="M94,7399 C99.523,7399 104,7403.59 104,7409.253 C104,7413.782 101.138,7417.624 97.167,7418.981 C96.66,7419.082 96.48,7418.762 96.48,7418.489 C96.48,7418.151 96.492,7417.047 96.492,7415.675 C96.492,7414.719 96.172,7414.095 95.813,7413.777 C98.04,7413.523 100.38,7412.656 100.38,7408.718 C100.38,7407.598 99.992,7406.684 99.35,7405.966 C99.454,7405.707 99.797,7404.664 99.252,7403.252 C99.252,7403.252 98.414,7402.977 96.505,7404.303 C95.706,7404.076 94.85,7403.962 94,7403.958 C93.15,7403.962 92.295,7404.076 91.497,7404.303 C89.586,7402.977 88.746,7403.252 88.746,7403.252 C88.203,7404.664 88.546,7405.707 88.649,7405.966 C88.01,7406.684 87.619,7407.598 87.619,7408.718 C87.619,7412.646 89.954,7413.526 92.175,7413.785 C91.889,7414.041 91.63,7414.493 91.54,7415.156 C90.97,7415.418 89.522,7415.871 88.63,7414.304 C88.63,7414.304 88.101,7413.319 87.097,7413.247 C87.097,7413.247 86.122,7413.234 87.029,7413.87 C87.029,7413.87 87.684,7414.185 88.139,7415.37 C88.139,7415.37 88.726,7417.2 91.508,7416.58 C91.513,7417.437 91.522,7418.245 91.522,7418.489 C91.522,7418.76 91.338,7419.077 90.839,7418.982 C86.865,7417.627 84,7413.783 84,7409.253 C84,7403.59 88.478,7399 94,7399"
+                                                            id="github-[#142]"> </path>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    <span x-html="'Github'"></span>
+                                </span>
                             </div>
-                           
-                        
 
+
+
+                        </div>
+                        <div style="display:flex; justify-content: center;">
+                            <span>................................</span>
                         </div>
                         <div style="margin: 5px 0px;">
                             <template x-for="(tag, index) in data.tags">
@@ -438,7 +514,7 @@
                             x-html="`@${metadata.owner}`">@sajith.rahim</a>
                         <div>
                             <div x-html="` ☐ Copyright ${metadata.year}`"> ☐ Copyright 2023</div>
-                            <div  @click="handleURL('Design')" class="design-cred">Design: Irakli Nadirashvili</div>
+                            <div @click="handleURL('credits')" class="design-cred">Design: Irakli Nadirashvili</div>
                         </div>
                     </div>
                 </div>
@@ -613,7 +689,7 @@
 
                     <!--span style="font-size: 8px;text-align:center;">no cookies, no persistence, static as it
                         gets.</span-->
-                    <span  :class="geo.enabled? '':'hide'" style="font-size: 8px; text-align:center;"
+                    <span :class="geo.enabled? '':'hide'" style="font-size: 8px; text-align:center;"
                         x-html="`🔌 ${geo.ip || ''} | 📍 ${geo.geoLocation.city || ''}-${geo.geoLocation.region || ''}-${geo.geoLocation.country || ''} `">
                     </span>
                 </div>
@@ -630,6 +706,11 @@
         </div>
     </div>
     </div>
+
+    <div class="toast-notification" x-show="notification.content.length > 0">
+        <span x-html="notification.content"></span>
+    </div>
+    
 </body>
 
 </html>
