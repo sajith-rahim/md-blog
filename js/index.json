@@ -4,8 +4,10 @@
     "owner": "sajith.rahim",
     "owner_email": "sajith.rahim@outlook.com",
     "year": "2022",
-    "ticker_text": "Knowledge Base v1.3",
+    "ticker_text": "Web Log v1.3",
     "show_post_count_in_ticker": "true",
+    "credits_md_uri": "./credits.md",
+    "tags": ["fiction", "feel-good", "mafia"],
     "top_posts":[
         "The Shawshank Redemption",
         "The Godfather",
