@@ -10,6 +10,7 @@ function init() {
             owner: "sajith.rahim",
             owner_email: "sajith.rahim@outlook.com",
             year: "2022",
+            credits_md_uri: './credits.md',
             ticker_text: "`• ${this.metadata.title} v${this.metadata.version} •     | No of posts: ${ this.data.posts.length}`",
         },
         data: {
@@ -46,6 +47,9 @@ function init() {
             enabled: false,
             ip: '',
             geoLocation: ''
+        },
+        notification:{
+            content: ""
         },
         init() {
             if (this.geo.enabled) {
@@ -137,9 +141,15 @@ function init() {
                 if (metadata.year) {
                     this.metadata.year = metadata.year;
                 }
+                if (metadata.credits_md_uri) {
+                    this.metadata.credits_md_uri = metadata.credits_md_uri;
+                }
                 if (metadata.ticker_text) {
                     this.metadata.ticker_text = `• ${metadata.ticker_text} •`;
                     $(this.$refs.marquee).html(this.metadata.ticker_text);
+                }
+                if( metadata.tags){
+                    this.data.tags = metadata.tags;
                 }
                 if (metadata.posts) {
 
@@ -298,6 +308,9 @@ function init() {
             try {
                 window.history.pushState("object or string", "Title", "/" + window.location.href.substring(window.location.href.lastIndexOf('/') + 1).split("?")[0]);
                 this.clearErrorState();
+                if(!this.state.isHomeView){
+                    $(this.$refs.marquee).html(`${this.metadata.ticker_text} | No of posts: ${this.data.posts.length}`);
+                }
                 this.toggleArticleView();
             } catch (error) {
 
@@ -310,9 +323,10 @@ function init() {
                 let title = $(this.$refs.marquee).text();
                 let text = window.location.origin + window.location.pathname + '/?search=' + encodeURI(title);
                 navigator.clipboard.writeText(text);
+                this.setNotification('✔️ Direct Link Copied to Clipboard.')
 
             } catch (error) {
-
+                this.setNotification('❌ Failed to generate Direct Link.')
             }
 
         },
@@ -354,8 +368,9 @@ function init() {
             case 'Portfolio':
                 this.openInNewTab('http://sajith-rahim.github.io')
                 break;
-            case 'Design':
-                this.openInNewTab('https://dribbble.com/shots/15656415-Blog-Self-Control')
+            case 'credits':
+                this.openBlogArticle('', {title: 'credits', markdown_uri:'./credits.md' })
+                //this.openInNewTab('https://dribbble.com/shots/15656415-Blog-Self-Control')
                 break;
         
             default:
@@ -367,6 +382,16 @@ function init() {
         },
         openInNewTab(url) {
             window.open(url, '_blank').focus();
+        },
+
+        setNotification(message){
+            this.notification.content = message;
+            setTimeout(() => {
+                this.clearNotification();
+            }, 5000);
+        },
+        clearNotification(){
+            this.notification.content = '';
         },
 
 
