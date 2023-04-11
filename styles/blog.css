@@ -1401,3 +1401,40 @@ div.four-not-four #g6219 {
   margin: 0 auto;
   width: 20vw;
 }
+
+.arcticle-sidebar-options {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+
+}
+
+.arcticle-sidebar-options .share {
+width: 2rem;
+}
+
+.arcticle-sidebar-options .back {
+  width: 2rem;
+}
+
+.article-licensing {
+  position: relative;
+  z-index: 1;
+  box-shadow: none;
+  background: #f5f5f5;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.toast-notification{
+  position: fixed;
+  bottom: 1vw;
+  left: 1vw;
+  background-color: #696968;
+  width: fit-content;
+  border: 3px solid green;
+}
+
